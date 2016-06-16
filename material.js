@@ -3781,6 +3781,9 @@ MaterialRipple.prototype.CssClasses_ = {
    * @private
    */
 MaterialRipple.prototype.downHandler_ = function (event) {
+    if (!this.rippleElement_) {
+        return;
+    }
     if (!this.rippleElement_.style.width && !this.rippleElement_.style.height) {
         var rect = this.element_.getBoundingClientRect();
         this.boundHeight = rect.height;
@@ -3832,6 +3835,9 @@ MaterialRipple.prototype.upHandler_ = function (event) {
         // shows for tap events, which seem to trigger a mouseup too soon after
         // mousedown.
         window.setTimeout(function () {
+            if (!this.rippleElement_) {
+                return;
+            }
             this.rippleElement_.classList.remove(this.CssClasses_.IS_VISIBLE);
         }.bind(this), 0);
     }
